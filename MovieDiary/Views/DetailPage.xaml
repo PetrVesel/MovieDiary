@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieDiary.Views.DetailPage"
+             Title="Detail Filmu">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Image x:Name="imgPoster" HeightRequest="300" />
+            <Label x:Name="lblTitle" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Label x:Name="lblYear" HorizontalOptions="Center" TextColor="Gray"/>
+
+            <BoxView HeightRequest="1" Color="Gray" />
+
+            <Label Text="Moje hodnocení (1-5):" />
+            <Slider x:Name="sliderRating" Minimum="1" Maximum="5" Value="3" />
+            <Label BindingContext="{x:Reference sliderRating}" Text="{Binding Value, StringFormat='{0:F0}'}" HorizontalOptions="Center" FontSize="20"/>
+
+            <Label Text="Moje poznámka:" />
+            <Editor x:Name="editorNote" HeightRequest="100" Placeholder="Napište svůj názor..." BackgroundColor="#F0F0F0"/>
+
+            <Button Text="ULOŽIT DO DENÍKU" Clicked="OnSaveClicked" BackgroundColor="#512BD4" TextColor="White"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
