@@ -13,7 +13,6 @@ public partial class LibraryPage : ContentPage
         _service = service;
     }
 
-    // Volá se vždy, když stránka pøijde na popøedí
     protected override async void OnAppearing()
     {
         base.OnAppearing();
@@ -23,7 +22,6 @@ public partial class LibraryPage : ContentPage
 
     private async void OnMovieSelected(object sender, SelectionChangedEventArgs e)
     {
-        // Otevøení detailu pro úpravu uloženého filmu
         if (e.CurrentSelection.FirstOrDefault() is Movie selectedMovie)
         {
             var navigationParameter = new Dictionary<string, object>

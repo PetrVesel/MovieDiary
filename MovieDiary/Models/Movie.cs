@@ -3,13 +3,13 @@ using System.Text.Json.Serialization;
 
 namespace MovieDiary.Models
 {
-    // Třída reprezentující film
+    //Třída reprezentující film
     public class Movie
     {
-        [PrimaryKey, AutoIncrement] // Pro SQLite databázi
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [JsonPropertyName("Title")] // Mapování z JSONu (API)
+        [JsonPropertyName("Title")]
         public string Title { get; set; }
 
         [JsonPropertyName("Year")]
@@ -21,13 +21,12 @@ namespace MovieDiary.Models
         [JsonPropertyName("Poster")]
         public string PosterUrl { get; set; }
 
-        // Naše uživatelská data (nejsou v API, vyplníme my)
-        public int MyRating { get; set; }     // Hodnocení 1-5
-        public string MyNote { get; set; }    // Poznámka
+        //Uživatelská data
+        public int MyRating { get; set; } 
+        public string MyNote { get; set; }
         public bool IsWatched { get; set; } = false;
     }
 
-    // Pomocná třída, protože OMDb vrací seznam filmů zabalený v objektu "Search"
     public class SearchResult
     {
         [JsonPropertyName("Search")]

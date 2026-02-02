@@ -6,7 +6,7 @@ namespace MovieDiary.Services
 {
     public class MovieService
     {
-        // 1. Část: Databáze
+        //Databáze
         SQLiteAsyncConnection _database;
 
         async Task Init()
@@ -21,7 +21,7 @@ namespace MovieDiary.Services
         public async Task AddOrUpdateMovieAsync(Movie movie)
         {
             await Init();
-            await _database.InsertOrReplaceAsync(movie); // Uloží nebo přepíše
+            await _database.InsertOrReplaceAsync(movie);
         }
 
         public async Task<List<Movie>> GetMyMoviesAsync()
@@ -36,9 +36,8 @@ namespace MovieDiary.Services
             await _database.DeleteAsync(movie);
         }
 
-        // 2. Část: REST API
+        //REST API
         HttpClient _client;
-        // !!! ZDE VLOŽTE VÁŠ API KLÍČ Z EMAILU !!!
         const string ApiKey = "8073d6a2";
         const string Url = "https://www.omdbapi.com/";
 
@@ -51,12 +50,10 @@ namespace MovieDiary.Services
         {
             if (string.IsNullOrWhiteSpace(query)) return new List<Movie>();
 
-            // Sestavení URL
             var response = await _client.GetAsync($"{Url}?apikey={ApiKey}&s={query}&type=movie");
 
             if (response.IsSuccessStatusCode)
             {
-                // Deserializace JSONu
                 var result = await response.Content.ReadFromJsonAsync<SearchResult>();
                 return result?.Movies ?? new List<Movie>();
             }
